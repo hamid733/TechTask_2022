@@ -1,9 +1,9 @@
 ﻿Feature: Api_Tests
 
-Functional Test cases for the Awesome Bakery APIs
+Functional Tests cases for the Awesome Bakery APIs
 
 @functional @Orders
-Scenario: Verify the order fields received from the api
+Scenario: Verify the order details contains all the fields in the api response
 	When I call the orders api
 	Then the following order items should be displayed against a single order
 	| Field       |
