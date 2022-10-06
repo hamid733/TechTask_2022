@@ -12,8 +12,9 @@ namespace TechTask_2022.Support
         {
             try
             {
-                System.Configuration.ExeConfigurationFileMap configFileMap = new ExeConfigurationFileMap();
-                configFileMap.ExeConfigFilename = @"C:\Users\hamid.iqbal\source\repos\TechTask_2022\App.config";
+                string cfg_path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App.config");
+                ExeConfigurationFileMap configFileMap = new ExeConfigurationFileMap();
+                configFileMap.ExeConfigFilename = cfg_path;
                 Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
                 AppSettingsSection section = (AppSettingsSection)config.GetSection("appSettings");
                 return section.Settings[key].Value;

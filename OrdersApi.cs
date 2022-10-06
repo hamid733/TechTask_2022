@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
 using RestSharp;
 using TechTask_2022.Support;
 
@@ -64,6 +65,33 @@ namespace TechTask_2022
                 actual_vals.Add(item.Value.ToString());
             }
             return actual_vals;
+        }
+
+        internal bool checkjson_response()
+        {
+            string order_schema = @"{  
+                                      'type': 'object',
+                                      'properties':
+                                      {
+                                        'createdDate': {'type':'string'},
+                                        'cakeName': {'type': 'string',
+                                         'price': {'type':'string'}
+                                        }
+                                      }
+                                    }";
+            try
+            {
+                JObject order_details = check_order_details("2");
+                JsonSchema schema = JsonSchema.Parse(order_schema);
+                return order_details.IsValid(schema);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+                       
+
         }
     }
 }

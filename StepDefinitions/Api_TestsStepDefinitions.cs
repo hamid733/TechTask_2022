@@ -1,8 +1,4 @@
-using Newtonsoft.Json.Linq;
 using NUnit.Framework;
-using System;
-using System.Collections;
-using TechTalk.SpecFlow;
 using TechTask_2022.Support;
 
 namespace TechTask_2022.StepDefinitions
@@ -50,9 +46,16 @@ namespace TechTask_2022.StepDefinitions
         [Then(@"the reponse should be a valid json")]
         public void ThenTheReponseShouldBeAValidJson()
         {
-            throw new PendingStepException();
+            var is_valid_json_response = order.checkjson_response();
+            Assert.IsTrue(is_valid_json_response, "Invalid api response");
         }
 
+        [Then(@"the order details should not contain null values")]
+        public void ThenTheOrderDetailsShouldNotContainNullValues()
+        {
+            foreach(var value in actual_order)
+                Assert.NotNull(value, "Invalid/Null order field");
+        }
 
     }
 }

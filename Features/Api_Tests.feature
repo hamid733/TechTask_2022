@@ -1,6 +1,6 @@
 ﻿Feature: Api_Tests
 
-A short summary of the feature
+Functional Test cases for the Awesome Bakery APIs
 
 @functional @Orders
 Scenario: Verify the order fields received from the api
@@ -24,3 +24,6 @@ Scenario: Verify the api response is a well-formed json schema
 When I call the orders api
 Then the reponse should be a valid json
 
+Scenario: Verify the order feilds are not null
+When I request the order details by passing the order id '2'
+Then the order details should not contain null values
